@@ -1,5 +1,4 @@
 import SimpleLightbox from 'simplelightbox';
-// Додатковий імпорт стилів
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const images = [
@@ -73,16 +72,12 @@ const ul = document.querySelector('.gallery');
 images.forEach(image => {
   ul.insertAdjacentHTML(
     'beforeend',
-    `<li class="gallery-list"><a class="gallery-link" href="${image.original}"><img src="${image.preview}" data-source="${image.original}" /></a></li>`
+    `<li class="gallery-list"><a class="gallery-link" href="${image.original}"><img src="${image.preview}" data-source="${image.original}" alt="${image.description}" class="gallery-image" /></a></li>`
   );
 });
 
-const lightbox = new SimpleLightbox('.gallery-link', {});
-
-ul.addEventListener('click', event => {
-  event.preventDefault();
-
-  if (event.target.tagName === 'IMG') {
-    lightbox.open();
-  }
+const lightbox = new SimpleLightbox('.gallery-link', {
+  captionsData: 'alt',
+  captionDelay: 250,
+  disableScroll: true,
 });
