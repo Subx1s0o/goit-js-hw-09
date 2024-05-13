@@ -68,13 +68,13 @@ const images = [
 ];
 
 const ul = document.querySelector('.gallery');
+let readyHTML = '';
 
 images.forEach(image => {
-  ul.insertAdjacentHTML(
-    'beforeend',
-    `<li class="gallery-list"><a class="gallery-link" href="${image.original}"><img src="${image.preview}" data-source="${image.original}" alt="${image.description}" class="gallery-image" /></a></li>`
-  );
+  readyHTML += `<li class="gallery-list"><a class="gallery-link" href="${image.original}"><img src="${image.preview}" data-source="${image.original}" alt="${image.description}" class="gallery-image" /></a></li>`;
 });
+
+ul.insertAdjacentHTML('beforeend', readyHTML);
 
 const lightbox = new SimpleLightbox('.gallery-link', {
   captionsData: 'alt',
